@@ -1,0 +1,124 @@
+song,artist,language,mood,energy
+Happy,Pharrell Williams,English,happy,high
+Perfect,Ed Sheeran,English,romantic,low
+Believer,Imagine Dragons,English,motivated,high
+Someone Like You,Adele,English,sad,low
+Shake It Off,Taylor Swift,English,happy,high
+Let Her Go,Passenger,English,sad,low
+Blinding Lights,The Weeknd,English,excited,high
+All of Me,John Legend,English,romantic,low
+Counting Stars,OneRepublic,English,motivated,high
+Lovely,Billie Eilish,English,sad,low
+Shape of You,Ed Sheeran,English,romantic,medium
+Sunflower,Post Malone,English,happy,medium
+Fix You,Coldplay,English,sad,low
+Roar,Katy Perry,English,motivated,high
+Photograph,Ed Sheeran,English,romantic,low
+Happier,Marshmello,English,sad,medium
+Levitating,Dua Lipa,English,happy,high
+Arcade,Duncan Laurence,English,sad,low
+Love Story,Taylor Swift,English,romantic,medium
+Unstoppable,Sia,English,motivated,high
+Watermelon Sugar,Harry Styles,English,happy,medium
+Stay,Rihanna,English,romantic,low
+See You Again,Wiz Khalifa,English,sad,medium
+Dance Monkey,Tones and I,English,happy,high
+Drivers License,Olivia Rodrigo,English,sad,low
+Hall of Fame,The Script,English,motivated,high
+Night Changes,One Direction,English,calm,low
+Love Yourself,Justin Bieber,English,calm,low
+Shallow,Lady Gaga,English,romantic,medium
+Firework,Katy Perry,English,motivated,high
+
+Tum Hi Ho,Arijit Singh,Hindi,romantic,low
+Channa Mereya,Arijit Singh,Hindi,sad,low
+Kesariya,Arijit Singh,Hindi,romantic,medium
+Ghungroo,Arijit Singh,Hindi,happy,high
+Kal Ho Naa Ho,Sonu Nigam,Hindi,sad,low
+Tera Ban Jaunga,Akhil Sachdeva,Hindi,romantic,low
+Malang,Sachet Tandon,Hindi,excited,high
+Zinda,Siddharth Mahadevan,Hindi,motivated,high
+Raabta,Arijit Singh,Hindi,romantic,medium
+Kabira,Tochi Raina,Hindi,calm,low
+Ilahi,Arijit Singh,Hindi,happy,medium
+Ae Dil Hai Mushkil,Arijit Singh,Hindi,sad,medium
+Dil Diyan Gallan,Atif Aslam,Hindi,romantic,low
+Bekhayali,Sachet Tandon,Hindi,sad,medium
+Love You Zindagi,Jasleen Royal,Hindi,happy,medium
+Apna Time Aayega,Ranveer Singh,Hindi,motivated,high
+Tujh Mein Rab Dikhta Hai,Roop Kumar Rathod,Hindi,romantic,low
+Senorita,Farhan Akhtar,Hindi,happy,high
+Gerua,Arijit Singh,Hindi,romantic,medium
+Agar Tum Saath Ho,Alka Yagnik,Hindi,sad,low
+Kar Har Maidan Fateh,Sukhwinder Singh,Hindi,motivated,high
+Khairiyat,Arijit Singh,Hindi,sad,medium
+Galliyan,Ankit Tiwari,Hindi,romantic,medium
+Sooraj Dooba Hai,Arijit Singh,Hindi,happy,high
+Muskurane,Arijit Singh,Hindi,sad,low
+Tum Se Hi,Mohit Chauhan,Hindi,romantic,low
+Subhanallah,Sreeram,Hindi,romantic,medium
+Badtameez Dil,Benny Dayal,Hindi,happy,high
+Phir Bhi Tumko Chaahunga,Arijit Singh,Hindi,sad,low
+Zindagi Kuch Toh Bata,Jubin Nautiyal,Hindi,calm,medium
+
+Dynamite,BTS,Korean,happy,high
+Butter,BTS,Korean,happy,high
+Spring Day,BTS,Korean,sad,low
+Boy With Luv,BTS,Korean,romantic,medium
+Love Scenario,iKON,Korean,romantic,medium
+Kill This Love,BLACKPINK,Korean,excited,high
+How You Like That,BLACKPINK,Korean,excited,high
+Gangnam Style,PSY,Korean,happy,high
+Stay With Me,Chanyeol,Korean,romantic,low
+Eight,IU,Korean,calm,medium
+Palette,IU,Korean,calm,medium
+Blueming,IU,Korean,happy,medium
+FANCY,TWICE,Korean,happy,high
+Cheer Up,TWICE,Korean,happy,high
+Next Level,aespa,Korean,excited,high
+Hype Boy,NewJeans,Korean,happy,medium
+Love Dive,IVE,Korean,romantic,medium
+DNA,BTS,Korean,excited,high
+Fake Love,BTS,Korean,sad,medium
+ON,BTS,Korean,motivated,high
+Psycho,Red Velvet,Korean,thoughtful,medium
+Peek-A-Boo,Red Velvet,Korean,excited,high
+God's Menu,Stray Kids,Korean,motivated,high
+Thunderous,Stray Kids,Korean,excited,high
+Maria,Hwasa,Korean,thoughtful,medium
+Lovesick Girls,BLACKPINK,Korean,sad,medium
+TT,TWICE,Korean,sad,medium
+Blue Hour,TOMORROW X TOGETHER,Korean,happy,medium
+Darari,TREASURE,Korean,romantic,medium
+Through The Night,IU,Korean,calm,low
+
+Amba Yaluwo,Amarasiri Peiris,Sinhala,calm,low
+Snehaye Nagarayai,Amarasiri Peiris,Sinhala,romantic,low
+Oba Apple Malak Wage,Amarasiri Peiris,Sinhala,romantic,low
+Epa Me Bawayata,Amarasiri Peiris,Sinhala,sad,low
+Hada Wiman Dorin,Amarasiri Peiris,Sinhala,calm,low
+Minisa Suwandai Mala Se,Amarasiri Peiris,Sinhala,thoughtful,low
+Kawuruwath Nathi,Amarasiri Peiris,Sinhala,sad,low
+Giman Harina Diyaamba,Amarasiri Peiris,Sinhala,calm,low
+Samanaliya,Amarasiri Peiris,Sinhala,romantic,low
+Ahasin Eha,Amarasiri Peiris,Sinhala,thoughtful,low
+Me Ayurin Api,Amarasiri Peiris,Sinhala,sad,low
+Hiru Mal Pibidena,Amarasiri Peiris,Sinhala,calm,low
+Hada Parana Sanda,Amarasiri Peiris,Sinhala,romantic,low
+Sanda Mala Pibidena,Amarasiri Peiris,Sinhala,calm,low
+Rosa Mal Kumariyo,T M Jayaratne,Sinhala,romantic,low
+Samanthiye,T M Jayaratne,Sinhala,calm,low
+Sitha Parana,T M Jayaratne,Sinhala,sad,low
+Me Jeevanaye,T M Jayaratne,Sinhala,thoughtful,low
+Nisala Neth,T M Jayaratne,Sinhala,romantic,low
+Piyumi,T M Jayaratne,Sinhala,calm,low
+Sanda Tharu Mal,T M Jayaratne,Sinhala,romantic,low
+Hade Upan Lande,T M Jayaratne,Sinhala,romantic,low
+Hithata Horen,T M Jayaratne,Sinhala,sad,low
+Mage Sanda Oba,T M Jayaratne,Sinhala,romantic,low
+Oba Ha Ma,T M Jayaratne,Sinhala,calm,low
+Api Ayemath,T M Jayaratne,Sinhala,sad,low
+Adareta Kiyana Katha,Chandralekha Perera,Sinhala,romantic,medium
+Hiru Hinahena,Sunil Edirisinghe,Sinhala,calm,low
+Sanda Mithuriya,Kasun Kalhara,Sinhala,romantic,medium
+Mal Mitak,Kasun Kalhara,Sinhala,sad,medium

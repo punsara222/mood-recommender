@@ -1,0 +1,98 @@
+title,genre,mood,energy,duration,image_url
+
+La La Land,Romance,romantic,medium,long,https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg
+Interstellar,Sci-Fi,thoughtful,medium,long,https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqoNMq72uFHeDv.jpg
+The Dark Knight,Action,excited,high,long,https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg
+Jumanji,Adventure,bored,high,long
+The Hangover,Comedy,bored,high,long
+Pride & Prejudice,Romance,romantic,low,long
+The Notebook,Romance,romantic,low,long
+Interstellar,Sci-Fi,thoughtful,medium,long
+Inception,Sci-Fi,thoughtful,high,long
+Coco,Animation,sad,low,long
+The Conjuring,Horror,excited,high,long
+Avengers: Endgame,Action,excited,high,long
+Little Miss Sunshine,Comedy,happy,medium,long
+Eat Pray Love,Drama,calm,low,long
+The Pursuit of Happyness,Drama,motivated,medium,long
+Frozen,Animation,happy,high,long
+Mean Girls,Comedy,bored,high,long
+Titanic,Romance,sad,low,long
+The Dark Knight,Action,excited,high,long
+The Secret Life of Walter Mitty,Adventure,motivated,medium,long
+Before Sunrise,Romance,romantic,low,long
+Dead Poets Society,Drama,thoughtful,low,long
+Moana,Animation,happy,high,long
+Shutter Island,Thriller,thoughtful,medium,long
+Crazy Rich Asians,Romance,romantic,medium,long
+The Grand Budapest Hotel,Comedy,calm,medium,long
+Spider-Man: No Way Home,Action,excited,high,long
+Up,Animation,sad,low,long
+Julie & Julia,Drama,calm,low,long
+The Fault in Our Stars,Romance,sad,low,long
+The Devil Wears Prada,Comedy,motivated,medium,long
+Mamma Mia!,Musical,happy,high,long
+The Martian,Sci-Fi,motivated,medium,long
+Harry Potter and the Sorcerer's Stone,Fantasy,excited,medium,long
+Harry Potter and the Chamber of Secrets,Fantasy,excited,medium,long
+Harry Potter and the Prisoner of Azkaban,Fantasy,thoughtful,medium,long
+Harry Potter and the Goblet of Fire,Fantasy,excited,high,long
+Harry Potter and the Order of the Phoenix,Fantasy,thoughtful,medium,long
+Harry Potter and the Half-Blood Prince,Fantasy,sad,medium,long
+Harry Potter and the Deathly Hallows Part 1,Fantasy,sad,medium,long
+Harry Potter and the Deathly Hallows Part 2,Fantasy,excited,high,long
+The Proposal,Romance,romantic,medium,long
+Zootopia,Animation,happy,high,long
+Gladiator,Action,motivated,high,long
+The Shawshank Redemption,Drama,motivated,low,long
+Call Me By Your Name,Romance,romantic,low,long
+The Lion King,Animation,sad,medium,long
+The Greatest Showman,Musical,happy,high,long
+Black Panther,Action,excited,high,long
+Doctor Strange,Action,thoughtful,high,long
+Iron Man,Action,motivated,high,long
+Thor: Ragnarok,Action,happy,high,long
+Captain America: Civil War,Action,excited,high,long
+The Avengers,Action,excited,high,long
+Finding Nemo,Animation,calm,low,long
+Toy Story,Animation,happy,medium,long
+The Silence of the Lambs,Thriller,thoughtful,medium,long
+Gone Girl,Thriller,thoughtful,medium,long
+The Wolf of Wall Street,Drama,excited,high,long
+Forrest Gump,Drama,calm,medium,long
+The Social Network,Drama,motivated,medium,long
+A Beautiful Mind,Drama,thoughtful,low,long
+The Imitation Game,Drama,thoughtful,medium,long
+Parasite,Thriller,thoughtful,medium,long
+Joker,Drama,sad,medium,long
+The Batman,Action,thoughtful,medium,long
+Dune,Sci-Fi,thoughtful,medium,long
+Avatar,Sci-Fi,excited,high,long
+The Hunger Games,Adventure,motivated,high,long
+The Maze Runner,Adventure,excited,high,long
+The Chronicles of Narnia,Fantasy,excited,medium,long
+Fantastic Beasts and Where to Find Them,Fantasy,excited,medium,long
+The Lord of the Rings: The Fellowship of the Ring,Fantasy,thoughtful,medium,long
+The Lord of the Rings: The Two Towers,Fantasy,excited,high,long
+The Lord of the Rings: The Return of the King,Fantasy,motivated,high,long
+Twilight,Romance,romantic,medium,long
+The Perks of Being a Wallflower,Drama,sad,low,long
+500 Days of Summer,Romance,sad,medium,long
+Notting Hill,Romance,romantic,medium,long
+Bridget Jones's Diary,Romance,happy,medium,long
+The Interns,Comedy,happy,medium,long
+Home Alone,Comedy,happy,high,long
+Paddington,Family,calm,medium,long
+Encanto,Animation,happy,high,long
+Luca,Animation,calm,medium,long
+Ratatouille,Animation,calm,medium,long
+The Incredibles,Animation,excited,high,long
+Mad Max: Fury Road,Action,excited,high,long
+Top Gun: Maverick,Action,motivated,high,long
+Mission Impossible,Action,excited,high,long
+A Quiet Place,Horror,thoughtful,medium,long
+The Nun,Horror,excited,high,long
+It,Horror,excited,high,long
+The Theory of Everything,Drama,thoughtful,low,long
+Whiplash,Drama,motivated,high,long
+The Help,Drama,calm,medium,long
