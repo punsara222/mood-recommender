@@ -4,9 +4,11 @@ import pandas as pd
 from recommender import recommend, movies, songs
 
 st.set_page_config(page_title="Mood Recommender", page_icon="🎭", layout="wide")
-theme_mode = st.sidebar.toggle("🌙 Dark Mode", value=True)
 
-# ---------- Custom Styling ----------
+# ---------- Theme Toggle (Top Right) ----------
+theme_mode = st.toggle("🌙 Dark Mode", value=True)
+
+# ---------- Background Styling ----------
 if theme_mode:
     background_style = """
     background: linear-gradient(-45deg, #141e30, #243b55, #1f1c2c, #928DAB);
@@ -14,6 +16,7 @@ if theme_mode:
     animation: gradient 12s ease infinite;
     """
     text_color = "white"
+    box_bg = "rgba(30,30,30,0.9)"
     card_bg = "#1e1e1e"
 else:
     background_style = """
@@ -22,8 +25,10 @@ else:
     animation: gradient 12s ease infinite;
     """
     text_color = "black"
+    box_bg = "rgba(255,255,255,0.9)"
     card_bg = "white"
 
+# ---------- Custom CSS ----------
 st.markdown(f"""
 <style>
 
@@ -38,7 +43,7 @@ st.markdown(f"""
 }}
 
 .main-title {{
-    font-size: 42px;
+    font-size: 45px;
     font-weight: bold;
     text-align: center;
     color: {text_color};
@@ -48,64 +53,43 @@ st.markdown(f"""
     text-align: center;
     font-size: 18px;
     color: {text_color};
+    margin-bottom: 30px;
 }}
 
-/* ----------- CAROUSEL STYLE ----------- */
+/* -------- TOP INPUT BOX -------- */
 
-.carousel {{
-    position: relative;
-    width: 100%;
-    height: 400px;
-    margin-top: 40px;
-    perspective: 1000px;
+.top-box {{
+    width: 85%;
+    margin: auto;
+    padding: 30px;
+    border-radius: 20px;
+    background: {box_bg};
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    margin-bottom: 40px;
 }}
 
-.carousel-track {{
-    position: relative;
-    width: 100%;
-    height: 100%;
+/* -------- POSTER ROW -------- */
+
+.poster-row {{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 40px;
 }}
 
-.carousel img {{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 250px;
-    border-radius: 15px;
-    transform: translate(-50%, -50%);
-    transition: all 1s ease;
-    opacity: 0;
+.poster-row img {{
+    width: 180px;
+    border-radius: 18px;
+    transition: all 0.4s ease;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }}
 
-/* Center */
-.carousel img:nth-child(3) {{
-    transform: translate(-50%, -50%) scale(1.2);
-    z-index: 3;
-    opacity: 1;
+.poster-row img:hover {{
+    transform: scale(1.1) translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
 }}
 
-/* Left */
-.carousel img:nth-child(2) {{
-    transform: translate(-120%, -50%) scale(0.9);
-    z-index: 2;
-    opacity: 0.7;
-}}
-
-/* Right */
-.carousel img:nth-child(4) {{
-    transform: translate(20%, -50%) scale(0.9);
-    z-index: 2;
-    opacity: 0.7;
-}}
-
-/* Hidden sides */
-.carousel img:nth-child(1),
-.carousel img:nth-child(5) {{
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0;
-}}
-
-/* ----------- CARD STYLE ----------- */
+/* -------- RESULT CARD -------- */
 
 .card {{
     padding: 20px;
@@ -113,12 +97,6 @@ st.markdown(f"""
     background-color: {card_bg};
     box-shadow: 0px 6px 18px rgba(0,0,0,0.3);
     margin-bottom: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}}
-
-.card:hover {{
-    transform: scale(1.03);
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.4);
 }}
 
 .stButton>button {{
@@ -133,79 +111,52 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-
 # ---------- Title ----------
 st.markdown('<div class="main-title">🎭 Mood-Based Recommender</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-text">Find movies and songs based on your mood 💫</div>', unsafe_allow_html=True)
-st.write("")
 
-# ---------- Carousel Section ----------
-st.markdown("""
-<div class="carousel">
-    <div class="carousel-track">
-        <img src="https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg">
-        <img src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqoNMq72uFHeDv.jpg">
-        <img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg">
-        <img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg">
-        <img src="https://image.tmdb.org/t/p/w500/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg">
-    </div>
-</div>
-""", unsafe_allow_html=True)
+# ---------- TOP INPUT BOX ----------
+st.markdown('<div class="top-box">', unsafe_allow_html=True)
 
+col1, col2, col3 = st.columns(3)
 
-# ---------- Sidebar ----------
-st.sidebar.header("🎯 Choose Your Preferences")
+with col1:
+    content_type = st.selectbox("What do you want?", ["Movie", "Song"])
 
-content_type = st.sidebar.selectbox("What do you want?", ["Movie", "Song"])
-mood = st.sidebar.selectbox("Select Mood", sorted(movies["mood"].unique()))
-energy = st.sidebar.selectbox("Select Energy", ["low", "medium", "high"])
+with col2:
+    mood = st.selectbox("Select Mood", sorted(movies["mood"].unique()))
+
+with col3:
+    energy = st.selectbox("Select Energy", ["low", "medium", "high"])
 
 language = None
 if content_type == "Song":
-    language = st.sidebar.selectbox("Select Language", sorted(songs["language"].unique()))
+    language = st.selectbox("Select Language", sorted(songs["language"].unique()))
 
-st.sidebar.write("---")
-get_btn = st.sidebar.button("✨ Get Recommendations")
+st.write("")
+get_btn = st.button("✨ Get Recommendations")
 
-# Mood Emojis
-mood_emoji = {
-    "happy": "😄",
-    "sad": "😢",
-    "romantic": "💖",
-    "motivated": "💪",
-    "excited": "🤩",
-    "calm": "😌",
-    "bored": "😴",
-    "thoughtful": "🤔"
-}
+st.markdown('</div>', unsafe_allow_html=True)
+
+# ---------- POSTER ROW (Below Box) ----------
+st.markdown("""
+<div class="poster-row">
+    <img src="https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg">
+    <img src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqoNMq72uFHeDv.jpg">
+    <img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg">
+    <img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg">
+    <img src="https://image.tmdb.org/t/p/w500/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg">
+</div>
+""", unsafe_allow_html=True)
 
 # ---------- Results ----------
 if get_btn:
-    st.write(f"### Showing results for: **{mood.capitalize()} {mood_emoji.get(mood,'')} | {energy.capitalize()} Energy**")
+
+    st.write(f"### Showing results for: **{mood.capitalize()} | {energy.capitalize()} Energy**")
     st.write("")
 
     if content_type == "Movie":
         results = recommend("movie", mood, energy)
-        st.subheader("🎬 Recommended Movies")
-
-        if isinstance(results, str):
-            st.warning(results)
-        else:
-            for _, row in results.iterrows():
-                st.markdown('<div class="card">', unsafe_allow_html=True)
-                col1, col2 = st.columns([1, 2])
-
-                with col1:
-                    if "image_url" in row and pd.notna(row["image_url"]):
-                        st.image(row["image_url"], use_column_width=True)
-
-                with col2:
-                    st.markdown(f"### {row['title']}")
-                    st.write(f"**Genre:** {row['genre']}")
-                    st.write(f"**Duration:** {row['duration']}")
-
-                st.markdown('</div>', unsafe_allow_html=True)
-
     else:
         results = songs[
             (songs["mood"] == mood) &
@@ -213,14 +164,25 @@ if get_btn:
             (songs["language"] == language)
         ]
 
-        st.subheader("🎵 Recommended Songs")
+    if isinstance(results, str) or results.empty:
+        st.warning("No matching results found.")
+    else:
+        for _, row in results.iterrows():
+            st.markdown('<div class="card">', unsafe_allow_html=True)
+            col1, col2 = st.columns([1, 2])
 
-        if results.empty:
-            st.warning("No match found. Try different mood, energy, or language.")
-        else:
-            for _, row in results.iterrows():
-                st.markdown('<div class="card">', unsafe_allow_html=True)
-                st.markdown(f"### 🎵 {row['song']}")
-                st.write(f"**Artist:** {row['artist']}")
-                st.write(f"**Language:** {row['language']}")
-                st.markdown('</div>', unsafe_allow_html=True)
+            with col1:
+                if "image_url" in row and pd.notna(row["image_url"]):
+                    st.image(row["image_url"], use_column_width=True)
+
+            with col2:
+                if content_type == "Movie":
+                    st.markdown(f"### 🎬 {row['title']}")
+                    st.write(f"Genre: {row['genre']}")
+                    st.write(f"Duration: {row['duration']}")
+                else:
+                    st.markdown(f"### 🎵 {row['song']}")
+                    st.write(f"Artist: {row['artist']}")
+                    st.write(f"Language: {row['language']}")
+
+            st.markdown('</div>', unsafe_allow_html=True)
