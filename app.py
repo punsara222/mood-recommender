@@ -89,8 +89,8 @@ left, right = st.columns([1, 1.3], gap="large")
 
 # ---------------- LEFT SIDE ----------------
 with left:
-    st.markdown("## 🎭 Mood Recommender")
-    st.markdown("Find movies or songs that match your vibe ✨")
+    st.markdown("##  Mood Recommender")
+    st.markdown("Find movies or songs that match your vibe ")
     st.markdown("---")
 
     # Inputs
@@ -104,15 +104,14 @@ with left:
         language = None
 
     st.markdown("<br>", unsafe_allow_html=True)
-    get_btn = st.button("✨ Get Recommendations")
+    get_btn = st.button(" Get Recommendations")
 
 # ---------------- RIGHT SIDE ----------------
 with right:
     if not get_btn:
-        # Placeholder in a soft box
         st.markdown("""
         <div class="placeholder-box">
-            <h3>🎬 Your Recommendations Will Appear Here</h3>
+            <h3> Your Recommendations Will Appear Here</h3>
             <p>Select your mood<br>
             Choose your energy level<br>
             Click the button</p>
@@ -123,7 +122,6 @@ with right:
         st.markdown("## 🔥 Recommended For You")
         st.markdown("---")
 
-        # Get results
         if content_type == "Movie":
             results = recommend("movie", mood, energy)
         else:
@@ -136,7 +134,6 @@ with right:
         if isinstance(results, str) or results.empty:
             st.warning("No matching results found.")
         else:
-            # Show each result in a card
             for _, row in results.iterrows():
                 if content_type == "Movie":
                     st.markdown(f"""
@@ -153,41 +150,21 @@ with right:
                     </div>
                     """, unsafe_allow_html=True)
 
-    # ---------------- Poster Row (Always visible under right box) ----------------
-    
+        # ✅ Posters INSIDE right column
+    st.markdown("<br>", unsafe_allow_html=True)
 
     poster_data = [
-        {
-            "title": "Harry Potter",
-            "image": "https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Sorcerer%27s_Stone_poster.jpg",
-            "link": "https://www.originalfilmart.com/products/harry-potter-sorcerers-stone"
-        },
-        {
-            "title": "Inside Out",
-            "image": "https://upload.wikimedia.org/wikipedia/en/0/0a/Inside_Out_%282015_film%29_poster.jpg",
-            "link": "https://us.amazon.com/Inside-Animated-Limited-Photo-Poehler/dp/B00ZDL3LFC"
-        },
-        {
-            "title": "1989 Album",
-            "image": "https://upload.wikimedia.org/wikipedia/en/4/4f/Taylor_Swift_-_1989.png",
-            "link": "https://www.tiktok.com/@music_gallery1/video/7348423736556653845"
-        },
-        {
-            "title": "BTS Album",
-            "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/BTS_-_Love_Yourself_Tear.png",
-            "link": "https://espacioeslava.com/On-Kpop-Merch-5-quot-x1-quot-565084/"
-        }
+        {"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCNPyPvfVv6zG6gmwRr6FzB2c2NG3Za8t5lA&s"},  # Charitha Attalage
+        {"image": "https://image.tmdb.org/t/p/w500/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg"},  # Inside Out
+        {"image": "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg"},  # Avengers Endgame
+        {"image": "https://storage.googleapis.com/pod_public/750/263676.jpg"},  # TS
+        {"image": "https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg"}   # Your name
     ]
 
-    # 4 equal columns for small posters under right box
-    cols = st.columns([1,1,1,1], gap="small")
+    # 🔥 5 equal columns
+    cols = st.columns(5, gap="small")
 
     for col, poster in zip(cols, poster_data):
         with col:
-            st.image(poster["image"], width=120)  # small and visible
-            st.markdown(
-                f"<div style='text-align:center; font-size:12px; font-weight:600; margin-top:4px;'>"
-                f"<a href='{poster['link']}' target='_blank'>{poster['title']}</a>"
-                f"</div>",
-                unsafe_allow_html=True
-            )
+            st.image(poster["image"], width=120)
+
