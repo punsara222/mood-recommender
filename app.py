@@ -3,255 +3,191 @@ import streamlit as st
 import pandas as pd
 from recommender import recommend, movies, songs
 
-st.set_page_config(page_title="Mood Recommender", page_icon="🎭", layout="wide")
-
-# ---------------- THEME ----------------
-theme_mode = st.toggle("🌙 Dark Mode", value=True)
-
-if theme_mode:
-    bg_gradient = "linear-gradient(135deg, #0b1f3f, #1c2a50, #162336)"
-    main_text = "#E0E0E0"
-    secondary_text = "#B0B0B0"
-    card_bg = "rgba(255,255,255,0.05)"
-    button_gradient = "linear-gradient(90deg, #6a11cb, #2575fc)"
-    navbar_bg = "rgba(10,10,30,0.8)"
-else:
-    bg_gradient = "linear-gradient(135deg, #a1c4fd, #c2e9fb)"
-    main_text = "#111111"
-    secondary_text = "#333333"
-    card_bg = "rgba(255,255,255,0.3)"
-    button_gradient = "linear-gradient(90deg, #ff9a9e, #fad0c4)"
-    navbar_bg = "rgba(255,255,255,0.8)"
+st.set_page_config(page_title="Mood Recommender", layout="wide")
 
 # ---------------- CSS ----------------
-st.markdown(f"""
+st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+/* App Background */
+.stApp {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1e1e1e;
+}
 
-.stApp {{
-    background: {bg_gradient};
-    background-size: 400% 400%;
-    animation: gradient 25s ease infinite;
-    font-family: 'Montserrat', sans-serif;
-}}
-
-@keyframes gradient {{
-    0% {{ background-position: 0% 50%; }}
-    50% {{ background-position: 100% 50%; }}
-    100% {{ background-position: 0% 50%; }}
-}}
-
-/* ---------------- NAVBAR ---------------- */
-.navbar {{
-    width: 100%;
-    padding: 16px 40px;
-    position: sticky;
-    top: 0;
-    z-index: 99;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: {navbar_bg};
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}}
-
-.navbar-logo {{
-    font-weight: 800;
-    font-size: 28px;
-    color: {main_text};
-}}
-
-.navbar-links a {{
-    margin-left: 24px;
-    text-decoration: none;
-    color: {main_text};
+/* Headings */
+h2, h3 {
     font-weight: 600;
-    transition: 0.3s;
-}}
+}
 
-.navbar-links a:hover {{
-    color: #ff416c;
-}}
-
-/* ---------------- HERO ---------------- */
-.hero-title {{
-    font-size: 56px;
-    font-weight: 800;
-    text-align: center;
-    color: {main_text};
-    margin-top: 20px;
-}}
-
-.hero-sub {{
-    text-align: center;
-    font-size: 20px;
-    color: {secondary_text};
-    margin-bottom: 40px;
-}}
-
-/* ---------------- INPUT ROW ---------------- */
-.stSelectbox > div > div {{
-    background-color: rgba(255,255,255,0.1) !important;
-    color: {main_text} !important;
-    border-radius: 12px;
-    padding-left: 12px;
-}}
-
-.stButton>button {{
-    background: {button_gradient};
+/* Buttons */
+.stButton>button {
+    background: linear-gradient(90deg, #ff758c 0%, #ff7eb3 100%);
     color: white;
-    font-size: 18px;
-    border-radius: 16px;
-    padding: 16px 32px;
-    border: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}}
-
-.stButton>button:hover {{
-    transform: scale(1.08);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-}}
-
-/* ---------------- RESULT CARDS ---------------- */
-.result-card {{
-    width: 240px;
-    border-radius: 18px;
-    background: {card_bg};
-    backdrop-filter: blur(12px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-    margin-right: 20px;
-    padding: 16px;
-    color: {main_text};
-    display: inline-block;
-    vertical-align: top;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}}
-
-.result-card:hover {{
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-}}
-
-.card-image {{
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
+    font-weight: bold;
     border-radius: 12px;
-    margin-bottom: 12px;
-    transition: transform 0.3s ease;
-}}
+    padding: 8px 20px;
+    border: none;
+    transition: all 0.3s ease;
+}
 
-.card-image:hover {{
+.stButton>button:hover {
+    background: linear-gradient(90deg, #ff7eb3 0%, #ff758c 100%);
     transform: scale(1.05);
-}}
+}
 
-/* ---------------- CAROUSEL ---------------- */
-.horizontal-scroll {{
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-}}
-.horizontal-scroll::-webkit-scrollbar {{
-    height: 10px;
-}}
-.horizontal-scroll::-webkit-scrollbar-thumb {{
-    background: #888;
+/* Inputs */
+.css-1n76uvr, .css-1d391kg {
     border-radius: 10px;
-}}
-.horizontal-scroll::-webkit-scrollbar-thumb:hover {{
-    background: #555;
-}}
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
 
-/* ---------------- FOOTER ---------------- */
-.footer {{
+/* Result Cards */
+.result-card {
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s;
+}
+
+.result-card:hover {
+    transform: scale(1.02);
+}
+
+/* Placeholder Box */
+.placeholder-box {
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 15px;
+    padding: 25px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     text-align: center;
-    padding: 20px;
-    color: {secondary_text};
-    margin-top: 50px;
-    border-top: 1px solid rgba(255,255,255,0.2);
-}}
+    margin-bottom: 20px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- NAVBAR ----------------
-st.markdown(f"""
-<div class="navbar">
-    <div class="navbar-logo">🎭 MoodRecs</div>
-    <div class="navbar-links">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+# ---------------- LAYOUT ----------------
+left, right = st.columns([1, 1.3], gap="large")
 
-# ---------------- HERO ----------------
-st.markdown('<div class="hero-title">Find Your Perfect Mood Match</div>', unsafe_allow_html=True)
-st.markdown('<div class="hero-sub">Movies & Songs tailored to your vibe ✨</div>', unsafe_allow_html=True)
+# ---------------- LEFT SIDE ----------------
+with left:
+    st.markdown("## 🎭 Mood Recommender")
+    st.markdown("Find movies or songs that match your vibe ✨")
+    st.markdown("---")
 
-# ---------------- INPUT ROW ----------------
-col1, col2, col3, col4 = st.columns([1.2, 1.2, 1, 1])
-with col1:
-    content_type = st.selectbox("Content", ["Movie", "Song"])
-with col2:
+    # Inputs
+    content_type = st.selectbox("Content Type", ["Movie", "Song"])
     mood = st.selectbox("Mood", sorted(movies["mood"].unique()))
-with col3:
-    energy = st.selectbox("Energy", ["low", "medium", "high"])
-with col4:
-    language = st.selectbox("Language", sorted(songs["language"].unique())) if content_type=="Song" else None
+    energy = st.selectbox("Energy Level", ["low", "medium", "high"])
 
-st.write("")
-center_btn = st.columns([3,1,3])
-with center_btn[1]:
+    if content_type == "Song":
+        language = st.selectbox("Language", sorted(songs["language"].unique()))
+    else:
+        language = None
+
+    st.markdown("<br>", unsafe_allow_html=True)
     get_btn = st.button("✨ Get Recommendations")
-st.write("")
 
-# ---------------- MOOD ICONS ----------------
-mood_emoji = {
-    "happy": "😄", "sad": "😢", "romantic": "💖",
-    "motivated": "💪", "excited": "🤩", "calm": "😌",
-    "bored": "😴", "thoughtful": "🤔"
-}
-
-# ---------------- RESULTS ----------------
-if get_btn:
-    st.markdown(f"<h3 style='color:{main_text}; margin-left:20px;'>Results for {mood.capitalize()} {mood_emoji.get(mood,'')} | {energy.capitalize()} Energy</h3>", unsafe_allow_html=True)
-    
-    if content_type == "Movie":
-        results = recommend("movie", mood, energy)
+# ---------------- RIGHT SIDE ----------------
+with right:
+    if not get_btn:
+        # Placeholder in a soft box
+        st.markdown("""
+        <div class="placeholder-box">
+            <h3>🎬 Your Recommendations Will Appear Here</h3>
+            <p>Select your mood<br>
+            Choose your energy level<br>
+            Click the button</p>
+            <p>Sit back and discover something amazing 🎧🍿</p>
+        </div>
+        """, unsafe_allow_html=True)
     else:
-        results = songs[
-            (songs["mood"] == mood) &
-            (songs["energy"] == energy) &
-            (songs["language"] == language)
-        ]
-    
-    if isinstance(results, str) or results.empty:
-        st.warning("No matching results found.")
-    else:
-        st.markdown('<div class="horizontal-scroll">', unsafe_allow_html=True)
-        for _, row in results.iterrows():
-            image_url = row.get("image_url") if content_type=="Movie" else None
-            st.markdown('<div class="result-card">', unsafe_allow_html=True)
-            if image_url:
-                st.markdown(f'<img class="card-image" src="{image_url}">', unsafe_allow_html=True)
-            if content_type == "Movie":
-                st.markdown(f"### 🎬 {row['title']}")
-                st.write(f"**Genre:** {row['genre']}")
-                st.write(f"**Duration:** {row['duration']}")
-            else:
-                st.markdown(f"### 🎵 {row['song']}")
-                st.write(f"**Artist:** {row['artist']}")
-                st.write(f"**Language:** {row['language']}")
-            st.markdown('</div>', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown("## 🔥 Recommended For You")
+        st.markdown("---")
 
-# ---------------- FOOTER ----------------
-st.markdown(f"""
-<div class="footer">
-    © 2026 MoodRecs • Designed by You • Data-driven Recommendations
-</div>
-""", unsafe_allow_html=True)
+        # Get results
+        if content_type == "Movie":
+            results = recommend("movie", mood, energy)
+        else:
+            results = songs[
+                (songs["mood"] == mood) & 
+                (songs["energy"] == energy) & 
+                (songs["language"] == language)
+            ]
+
+        if isinstance(results, str) or results.empty:
+            st.warning("No matching results found.")
+        else:
+            # Show each result in a card
+            for _, row in results.iterrows():
+                if content_type == "Movie":
+                    st.markdown(f"""
+                    <div class="result-card">
+                        <h4>🎬 {row['title']}</h4>
+                        <p><b>Genre:</b> {row['genre']} | <b>Duration:</b> {row['duration']}</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown(f"""
+                    <div class="result-card">
+                        <h4>🎵 {row['song']}</h4>
+                        <p><b>Artist:</b> {row['artist']} | <b>Language:</b> {row['language']}</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+    # ---------------- Poster Row (Always visible under right box) ----------------
+    
+
+    poster_data = [
+        {
+            "title": "Harry Potter",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Sorcerer%27s_Stone_poster.jpg",
+            "link": "https://www.originalfilmart.com/products/harry-potter-sorcerers-stone"
+        },
+        {
+            "title": "Inside Out",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/0a/Inside_Out_%282015_film%29_poster.jpg",
+            "link": "https://us.amazon.com/Inside-Animated-Limited-Photo-Poehler/dp/B00ZDL3LFC"
+        },
+        {
+            "title": "1989 Album",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/4f/Taylor_Swift_-_1989.png",
+            "link": "https://www.tiktok.com/@music_gallery1/video/7348423736556653845"
+        },
+        {
+            "title": "BTS Album",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/BTS_-_Love_Yourself_Tear.png",
+            "link": "https://espacioeslava.com/On-Kpop-Merch-5-quot-x1-quot-565084/"
+        }
+    ]
+
+    # 4 equal columns for small posters under right box
+    cols = st.columns([1,1,1,1], gap="small")
+
+    for col, poster in zip(cols, poster_data):
+        with col:
+            st.image(poster["image"], width=120)  # small and visible
+            st.markdown(
+                f"<div style='text-align:center; font-size:12px; font-weight:600; margin-top:4px;'>"
+                f"<a href='{poster['link']}' target='_blank'>{poster['title']}</a>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
