@@ -1,4 +1,3 @@
-# app.py
 import streamlit as st
 import pandas as pd
 from recommender import recommend, movies, songs
@@ -37,7 +36,7 @@ h2, h3 {
 }
 
 /* Inputs */
-.css-1n76uvr, .css-1d391kg {
+.css-1n76uvr, .css-1d391kg, .stSelectbox>div>div>div>div {
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     background: rgba(255, 255, 255, 0.2);
@@ -81,6 +80,48 @@ h2, h3 {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 }
+
+/* Horizontal radio buttons for content type */
+.stRadio>div {
+    display: flex;
+    gap: 12px;
+}
+.stRadio>div>label {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.stRadio>div>label:hover {
+    background: rgba(255,126,179,0.2);
+}
+.stRadio>div>div>input:checked + label {
+    background: linear-gradient(90deg, #ff758c 0%, #ff7eb3 100%);
+    color: white;
+}
+
+/* Pill-style buttons for Mood, Energy, and Language */
+.stSelectbox>div>div>div>div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.stSelectbox>div>div>div>div>div {
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 6px 14px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.stSelectbox>div>div>div>div>div:hover {
+    background: rgba(255,126,179,0.2);
+}
+.stSelectbox>div>div>div>div>div[aria-selected="true"] {
+    background: linear-gradient(90deg, #ff758c 0%, #ff7eb3 100%);
+    color: white;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -89,12 +130,14 @@ left, right = st.columns([1, 1.3], gap="large")
 
 # ---------------- LEFT SIDE ----------------
 with left:
-    st.markdown("##  Mood Recommender")
-    st.markdown("Find movies or songs that match your vibe ")
+    st.markdown("## Mood Recommender")
+    st.markdown("Find movies or songs that match your vibe")
     st.markdown("---")
 
-    # Inputs
-    content_type = st.selectbox("Content Type", ["Movie", "Song"])
+    # Modern horizontal radio buttons for content type
+    content_type = st.radio("Select Content Type", ["Movie", "Song"], index=0, horizontal=True)
+
+    # Mood and Energy as compact pill-style selectboxes
     mood = st.selectbox("Mood", sorted(movies["mood"].unique()))
     energy = st.selectbox("Energy Level", ["low", "medium", "high"])
 
@@ -112,10 +155,10 @@ with right:
         st.markdown("""
         <div class="placeholder-box">
             <h3> Your Recommendations Will Appear Here</h3>
-            <p>Select your mood<br>
-            Choose your energy level<br>
+            <p>Select your mood,<br>
+            Choose your energy level,<br>
             Click the button</p>
-            <p>Sit back and discover something amazing 🎧🍿</p>
+            <p>Sit back and discover something amazing!</p>
         </div>
         """, unsafe_allow_html=True)
     else:
@@ -150,21 +193,16 @@ with right:
                     </div>
                     """, unsafe_allow_html=True)
 
-        # ✅ Posters INSIDE right column
+    # Posters
     st.markdown("<br>", unsafe_allow_html=True)
-
     poster_data = [
-        {"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCNPyPvfVv6zG6gmwRr6FzB2c2NG3Za8t5lA&s"},  # Charitha Attalage
-        {"image": "https://image.tmdb.org/t/p/w500/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg"},  # Inside Out
-        {"image": "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg"},  # Avengers Endgame
-        {"image": "https://storage.googleapis.com/pod_public/750/263676.jpg"},  # TS
-        {"image": "https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg"}   # Your name
+        {"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCNPyPvfVv6zG6gmwRr6FzB2c2NG3Za8t5lA&s"},
+        {"image": "https://image.tmdb.org/t/p/w500/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg"},
+        {"image": "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg"},
+        {"image": "https://storage.googleapis.com/pod_public/750/263676.jpg"},
+        {"image": "https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg"}
     ]
-
-    # 🔥 5 equal columns
     cols = st.columns(5, gap="small")
-
     for col, poster in zip(cols, poster_data):
         with col:
             st.image(poster["image"], width=120)
-
